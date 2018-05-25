@@ -5,65 +5,64 @@ module.exports = (app) => {
     //@method POST
     //@desc Register user
     //@access Public
-    app.post('/api/users/register', controllers.users.registerPost);
+    app.post('/api/auth/register', controllers.auth.registerPost);
 
     //@method POST
     //@desc Login user
     //@access Public
-    app.post('/api/users/login', controllers.users.loginPost);
+    app.post('/api/auth/login', controllers.auth.loginPost);
 
     //@method GET
-    //@desc Show authenticated user
-    //@access Authenticated user
-    app.get('/api/users/current',
-        passport.authenticate('jwt', { session: false }),
-        controllers.users.currentUser);
-
-    //@method POST
     //@desc Show authenticated user profile
     //@access Authenticated user
-    app.get('/api/profile',
+    app.get('/api/users/profile',
         passport.authenticate('jwt', { session: false }),
-        controllers.profile.profileGet);
+        controllers.users.profileGet);
+
+    //@method GET
+    //@desc Show all user profiles
+    //@access Public
+    app.get('/api/profiles',
+        controllers.profiles.profilesAllGet);
 
     //@method POST
     //@desc Create authenticated user profile
     //@access Authenticated user
-    app.post('/api/profile',
+    app.post('/api/profiles',
         passport.authenticate('jwt', { session: false }),
-        controllers.profile.profilePost);
+        controllers.profiles.profilesPost);
 
     //@method GET
     //@desc Get user profile by handle
     //@access Public
-    app.get('/api/profile/handle/:handle',
-        controllers.profile.profileHandleGet);
+    app.get('/api/profiles/handle/:handle',
+        controllers.profiles.profilesHandleGet);
 
     //@method POST
     //@desc Add experience to user profile
     //@access Authenticated user
-    app.post('/api/profile/experience',
+    app.post('/api/profiles/experience',
         passport.authenticate('jwt', { session: false }),
         controllers.experience.addExperiencePost);
 
     //@method DELETE
     //@desc DELETE experience from user profile
     //@access Authenticated user
-    app.delete('/api/profile/experience/:exp_id',
+    app.delete('/api/profiles/experience/:exp_id',
         passport.authenticate('jwt', { session: false }),
         controllers.experience.deleteExperience);
 
     //@method POST
     //@desc Add education to user profile
     //@access Authenticated user
-    app.post('/api/profile/education',
+    app.post('/api/profiles/education',
         passport.authenticate('jwt', { session: false }),
         controllers.education.addEducationPost);
 
     //@method DELETE
     //@desc DELETE education from user profile
     //@access Authenticated user
-    app.delete('/api/profile/education/:edu_id',
+    app.delete('/api/profiles/education/:edu_id',
         passport.authenticate('jwt', { session: false }),
         controllers.education.deleteEducation);
 

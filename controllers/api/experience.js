@@ -20,7 +20,7 @@ module.exports = {
         profile.experience.unshift(newExp);
         const newProfile = await profile.save();
 
-        res.json(newProfile);
+        return res.json(newProfile);
     },
 
     deleteExperience: async (req, res) => {

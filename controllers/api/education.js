@@ -20,7 +20,7 @@ module.exports = {
         profile.education.unshift(newEdu);
         const newProfile = await profile.save();
 
-        res.json(newProfile);
+        return res.json(newProfile);
     },
 
     deleteEducation: async (req, res) => {

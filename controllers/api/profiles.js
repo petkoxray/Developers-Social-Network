@@ -4,22 +4,20 @@ const Profile = require('../../models/Profile');
 const validateProfile = require('../../validation/profile');
 
 module.exports = {
-    profileGet: async (req, res) => {
-        const profile = await Profile.findOne({ user: req.user.id })
-            .populate('user', ['name', 'avatar']);
-
+    profilesAllGet: async (req, res) => {
         const errors = {};
 
-        if (!profile) {
-            errors.noprofile = "There is no profile for this user.";
+        const profiles = Profile.find().populate('user', ['name', 'avatar']);
 
+        if (!profiles) {
+            errors.noprofile = 'There are no profiles';
             return res.status(404).json(errors);
         }
 
-        return res.json(profile);
+        return res.json(profiles);
     },
 
-    profilePost: async (req, res) => {
+    profilesPost: async (req, res) => {
         const { errors, isValid } = validateProfile(req.body);
 
         if (!isValid) {
@@ -45,7 +43,7 @@ module.exports = {
         if (profile) {
             const updatedProfile = await Profile.findOneAndUpdate(
                 { user: req.user.id },
-                { $set: {...profileFields, handle: profile.handle } },
+                { $set: { ...profileFields, handle: profile.handle } },
                 { new: true }
             );
 
@@ -63,7 +61,7 @@ module.exports = {
         res.json(newProflie);
     },
 
-    profileHandleGet: async (req, res) => {
+    profilesHandleGet: async (req, res) => {
         const errors = {};
 
         const profile = await Profile.findOne({ handle: req.params.handle })
