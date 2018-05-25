@@ -1,13 +1,13 @@
 const Validator = require('validator');
 const isEmpty = require('./custom-rules/is-empty');
 
-module.exports = ({ email, name, password, password2 }) => {
+module.exports = ({ email, name, password, confirmPassword }) => {
     let errors = {};
 
     name = !isEmpty(name) ? name : '';
     email = !isEmpty(email) ? email : '';
     password = !isEmpty(password) ? password : '';
-    password2 = !isEmpty(password2) ? password2 : '';
+    confirmPassword = !isEmpty(confirmPassword) ? confirmPassword : '';
 
     if (!Validator.isLength(name, { min: 2, max: 30 })) {
         errors.name = 'Name must be between 2 and 30 characters';
@@ -33,11 +33,11 @@ module.exports = ({ email, name, password, password2 }) => {
         errors.password = 'Password must be at least 6 characters';
     }
 
-    if (Validator.isEmpty(password2)) {
+    if (Validator.isEmpty(confirmPassword)) {
         errors.password2 = 'Confirm Password field is required';
     }
 
-    if (!Validator.equals(password, password2)) {
+    if (!Validator.equals(password, confirmPassword)) {
         errors.password2 = 'Passwords must match';
     }
 

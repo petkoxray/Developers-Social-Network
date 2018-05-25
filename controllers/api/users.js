@@ -10,8 +10,8 @@ const validateLogin = require('../../validation/login');
 
 module.exports = {
     registerPost: async (req, res) => {
-        const { email, name, password } = req.body;
-        const { errors, isValid } = validateRegister({ email, name, password });
+        const { email, name, password, confirmPassword } = req.body;
+        const { errors, isValid } = validateRegister({ email, name, password, confirmPassword });
 
         if (!isValid) {
             return res.status(400).json(errors);
@@ -44,10 +44,11 @@ module.exports = {
     loginPost: async (req, res) => {
         const { email, password } = req.body;
         const { errors, isValid } = validateLogin({ email, password });
-
+        
         if (!isValid) {
             return res.status(400).json(errors);
         }
+
         const user = await User.findOne({ email });
 
         if (!user) {

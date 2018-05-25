@@ -3,12 +3,13 @@ const Profile = require('../../models/Profile');
 //Validator
 const validateProfile = require('../../validation/profile');
 // const validateEducation = require('../../validation/education');
-// const validateExperience = require('../../validation/experience');
 
 
 module.exports = {
     profileGet: async (req, res) => {
-        const profile = await Profile.findOne({ user: req.user.id });
+        const profile = await Profile.findOne({ user: req.user.id })
+            .populate('user', ['name', 'avatar']);
+
         const errors = {};
 
         if (!profile) {
@@ -63,4 +64,18 @@ module.exports = {
         const newProflie = await new Profile(profileFields).save();
         res.json(newProflie);
     },
+
+    profileHandleGet: async (req, res) => {
+        const errors = {};
+
+        const profile = await Profile.findOne({ handle: req.params.handle })
+            .populate('user', ['name', 'avatar']);
+
+        if (!profile) {
+            errors.noprofile = 'There is no profile for this user';
+            res.status(404).json(errors);
+        }
+
+        return res.json(profile);
+    }
 };
