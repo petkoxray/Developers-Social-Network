@@ -2,8 +2,6 @@ const Profile = require('../../models/Profile');
 
 //Validator
 const validateProfile = require('../../validation/profile');
-// const validateEducation = require('../../validation/education');
-
 
 module.exports = {
     profileGet: async (req, res) => {
@@ -47,7 +45,7 @@ module.exports = {
         if (profile) {
             const updatedProfile = await Profile.findOneAndUpdate(
                 { user: req.user.id },
-                { $set: profileFields },
+                { $set: {...profileFields, handle: profile.handle } },
                 { new: true }
             );
 
@@ -58,7 +56,7 @@ module.exports = {
 
         if (hasProfile) {
             errors.handle = 'That handle / profile name already exists.';
-            res.status(400).json(errors);
+            return res.status(400).json(errors);
         }
 
         const newProflie = await new Profile(profileFields).save();
@@ -73,7 +71,7 @@ module.exports = {
 
         if (!profile) {
             errors.noprofile = 'There is no profile for this user';
-            res.status(404).json(errors);
+            return res.status(404).json(errors);
         }
 
         return res.json(profile);

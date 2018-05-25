@@ -8,6 +8,7 @@ const ProfileSchema = new Schema({
     },
     handle: {
         type: String,
+        unique: true,
         required: true,
         max: 48
     },
