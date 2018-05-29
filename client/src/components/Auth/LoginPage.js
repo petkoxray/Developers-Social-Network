@@ -5,8 +5,6 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 
-
-
 class Login extends Component {
     constructor() {
         super();
@@ -45,7 +43,7 @@ class Login extends Component {
             password: this.state.password
         };
 
-        console.log(user);
+        this.props.loginUser(user);
     }
 
     onChangeHandler(e) {

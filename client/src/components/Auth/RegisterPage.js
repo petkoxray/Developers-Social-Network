@@ -12,7 +12,7 @@ class Register extends Component {
             name: '',
             email: '',
             password: '',
-            password2: '',
+            confirmPassword: '',
             errors: {}
         };
 
@@ -37,7 +37,7 @@ class Register extends Component {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password,
-            password2: this.state.password2
+            confirmPassword: this.state.confirmPassword
         };
 
         this.props.registerUser(newUser, this.props.history);
@@ -109,15 +109,15 @@ class Register extends Component {
                                     <input
                                         type="password"
                                         className={classnames('form-control form-control-lg', {
-                                            'is-invalid': errors.password2
+                                            'is-invalid': errors.confirmPassword
                                         })}
                                         placeholder="Confirm Password"
-                                        name="password2"
-                                        value={this.state.password2}
+                                        name="confirmPassword"
+                                        value={this.state.confirmPassword}
                                         onChange={this.onChangeHandler}
                                     />
-                                    {errors.password2 && (
-                                        <div className="invalid-feedback">{errors.password2}</div>
+                                    {errors.confirmPassword && (
+                                        <div className="invalid-feedback">{errors.confirmPassword}</div>
                                     )}
                                 </div>
                                 <input type="submit" className="btn btn-info btn-block mt-4" />

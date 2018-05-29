@@ -34,11 +34,11 @@ module.exports = ({ email, name, password, confirmPassword }) => {
     }
 
     if (Validator.isEmpty(confirmPassword)) {
-        errors.password2 = 'Confirm Password field is required';
+        errors.confirmPassword = 'Confirm Password field is required';
     }
 
     if (!Validator.equals(password, confirmPassword)) {
-        errors.password2 = 'Passwords must match';
+        errors.confirmPassword = 'Passwords must match';
     }
 
     return {
