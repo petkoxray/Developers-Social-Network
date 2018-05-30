@@ -6,13 +6,15 @@ import store from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
+import { clearCurrentProfile } from './actions/profileActions';
 
 import './App.css';
-import HomePage from './components/HomePage/HomePage';
+import HomePage from './components/Home/HomePage';
 import Footer from './components/shared/Footer';
 import Navbar from './components/shared/Navbar';
 import RegisterPage from './components/Auth/RegisterPage';
 import LoginPage from './components/Auth/LoginPage';
+import DashboardPage from './components/Dashboard/DashboardPage';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -26,9 +28,10 @@ if (localStorage.jwtToken) {
   // Check for expired token
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
+    //Clear profile
+    store.dispatch(clearCurrentProfile());
     // Logout user
     store.dispatch(logoutUser());
-
     // Redirect to login
     window.location.href = '/login';
   }
@@ -42,6 +45,7 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={HomePage} />
+            <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/login" component={LoginPage} />
             <Footer />
