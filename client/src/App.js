@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import jwt_decode from 'jwt-decode';
@@ -10,11 +10,13 @@ import { clearCurrentProfile } from './actions/profileActions';
 
 import './App.css';
 import HomePage from './components/Home/HomePage';
-import Footer from './components/shared/Footer';
-import Navbar from './components/shared/Navbar';
+import Footer from './components/layout/Footer';
+import Navbar from './components/layout/Navbar';
 import RegisterPage from './components/Auth/RegisterPage';
 import LoginPage from './components/Auth/LoginPage';
 import DashboardPage from './components/Dashboard/DashboardPage';
+import PrivateRoute from './components/shared/PrivateRoot';
+import CreateProfilePage from './components/CreateProfile/CreateProfilePage';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -45,9 +47,12 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/login" component={LoginPage} />
+            <Switch>
+              <PrivateRoute exact path="/dashboard" component={DashboardPage} />
+              <PrivateRoute exact path="/create-profile" component={CreateProfilePage} />
+            </Switch>
             <Footer />
           </div>
         </Router>
