@@ -3,7 +3,7 @@ import TextFieldGroup from '../UI/TextFieldGroup/TextFieldGroup';
 import TextAreaFieldGroup from '../UI/TextAreaFieldGroup/TextAreaFieldGroup';
 import SelectListGroup from '../UI/SelectListGroup/SelectListGroup';
 
-const createProfileForm = (props) => {
+const profileForm = (props) => {
     // Select options for status
     const options = [
         { label: '* Select Professional Status', value: 0 },
@@ -22,10 +22,11 @@ const createProfileForm = (props) => {
             <TextFieldGroup
                 placeholder="* Profile Handle"
                 name="handle"
+                disabled="true"
                 value={props.handle}
                 onChange={props.onChangeHandler}
                 error={props.errors.handle}
-                info="A unique handle for your profile URL. Your full name, company name, nickname"
+                info="A unique handle for your profile URL. One setted cannot be changed!"
             />
             <SelectListGroup
                 placeholder="Status"
@@ -49,7 +50,7 @@ const createProfileForm = (props) => {
                 name="website"
                 value={props.website}
                 onChange={props.onChangeHandler}
-                error={props.website}
+                error={props.errors.website}
                 info="Could be your own website or a company one"
             />
             <TextFieldGroup
@@ -106,4 +107,4 @@ const createProfileForm = (props) => {
     );
 }
 
-export default createProfileForm;
+export default profileForm;
