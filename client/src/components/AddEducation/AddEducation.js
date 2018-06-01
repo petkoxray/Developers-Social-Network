@@ -59,8 +59,6 @@ class AddEducation extends Component {
   }
 
   render() {
-    const { errors } = this.state;
-
     return (
       <div className="add-education">
         <div className="container">

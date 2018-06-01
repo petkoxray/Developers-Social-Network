@@ -7,7 +7,7 @@ module.exports = {
     profilesAllGet: async (req, res) => {
         const errors = {};
 
-        const profiles = Profile.find().populate('user', ['name', 'avatar']);
+        const profiles = await Profile.find().populate('user', ['name', 'avatar']);
 
         if (!profiles) {
             errors.noprofile = 'There are no profiles';
