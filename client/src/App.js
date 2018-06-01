@@ -8,7 +8,6 @@ import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 import { clearCurrentProfile } from './actions/profileActions';
 
-import './App.css';
 import HomePage from './components/Home/HomePage';
 import Footer from './components/layout/Footer';
 import Navbar from './components/layout/Navbar';
@@ -18,6 +17,8 @@ import DashboardPage from './components/Dashboard/DashboardPage';
 import PrivateRoute from './components/shared/PrivateRoot';
 import CreateProfilePage from './components/CreateProfile/CreateProfilePage';
 import EditProfilePage from './components/EditProfile/EditProfilePage';
+import AddExperience from './components/AddExperience/AddExperience';
+import AddEducation from './components/AddEducation/AddEducation';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -51,6 +52,9 @@ class App extends Component {
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/login" component={LoginPage} />
             <Switch>
+              <PrivateRoute exact path="/dashboard" component={DashboardPage} />
+              <PrivateRoute exact path="/add-experience" component={AddExperience} />
+              <PrivateRoute exact path="/add-education" component={AddEducation} />
               <PrivateRoute exact path="/dashboard" component={DashboardPage} />
               <PrivateRoute exact path="/create-profile" component={CreateProfilePage} />
               <PrivateRoute exact path="/edit-profile" component={EditProfilePage} />
