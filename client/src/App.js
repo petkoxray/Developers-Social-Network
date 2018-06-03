@@ -20,6 +20,8 @@ import EditProfilePage from './components/EditProfile/EditProfilePage';
 import AddExperience from './components/AddExperience/AddExperience';
 import AddEducation from './components/AddEducation/AddEducation';
 import ProfilesPage from './components/Profiles/ProfilesPage';
+import ProfilePage from './components/Profile/ProfilePage';
+import NotFound from './components/NotFound/NotFound';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -53,6 +55,7 @@ class App extends Component {
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/profiles" component={ProfilesPage} />
+            <Route exact path="/profiles/:handle" component={ProfilePage} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={DashboardPage} />
               <PrivateRoute exact path="/add-experience" component={AddExperience} />
@@ -61,6 +64,7 @@ class App extends Component {
               <PrivateRoute exact path="/create-profile" component={CreateProfilePage} />
               <PrivateRoute exact path="/edit-profile" component={EditProfilePage} />
             </Switch>
+            <Route exact path="/not-found" component={NotFound} />
             <Footer />
           </div>
         </Router>

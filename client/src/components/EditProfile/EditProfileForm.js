@@ -68,7 +68,7 @@ const profileForm = (props) => {
                 onChange={props.onChangeHandler}
                 error={props.errors.skills}
                 info="Please use comma separated values (eg.
-                HTML,CSS,JavaScript,PHP"
+                HTML,CSS,JavaScript,PHP)"
             />
             <TextFieldGroup
                 placeholder="Github Username"
