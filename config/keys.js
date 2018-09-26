@@ -1,5 +1,5 @@
-module.exports = {
-  mongoURI: 'mongodb://root:test123@ds119160.mlab.com:19160/newdb',
-  port: process.env.PORT || 5000,
-  secret: 'secret'
-};
+if (process.env.NODE_ENV === 'production') {
+    module.exports = require('./keys_prod')
+} else {
+    module.exports = require('./keys_dev')
+}
