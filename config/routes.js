@@ -69,9 +69,9 @@ module.exports = (app) => {
     //@method all
     //@desc Not found URLS
     //@access Public
-    app.all('*', (req, res) => {
-        res.status(404);
-        res.send('404 Not Found');
-        res.end();
-    });
+    // app.all('*', (req, res) => {
+    //     res.status(404);
+    //     res.send('404 Not Found');
+    //     res.end();
+    // });
 };
