@@ -36,7 +36,7 @@ const profileAbout = ({ profile }) => {
       </div>
     </div>
   );
-}
+};
 
 profileAbout.propTypes = {
   profile: PropTypes.object.isRequired

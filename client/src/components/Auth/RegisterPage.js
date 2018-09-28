@@ -82,7 +82,7 @@ class Register extends Component {
                                 />
                                 <TextFieldGroup
                                     placeholder="Confirm Password"
-                                    name="password2"
+                                    name="confirmPassword"
                                     type="password"
                                     value={this.state.confirmPassword}
                                     onChange={this.onChangeHandler}

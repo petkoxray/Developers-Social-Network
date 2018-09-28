@@ -19,7 +19,7 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
-            <i className="fas fa-tachometer-alt">Dashboard</i>
+            <i className="fa fa-tachometer-alt"></i>Dashboard
           </Link>
         </li>
         <li className="nav-item">
@@ -57,10 +57,10 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-steel mb-4">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            DevConnect
+            <i className="fa fa-bolt"></i>DevConnect
             </Link>
           <button
             className="navbar-toggler"
@@ -76,7 +76,7 @@ class Navbar extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/profiles">
                   {' '}
-                  Developers
+                  <i className="fa fa-users"></i>Developers
                   </Link>
               </li>
             </ul>
